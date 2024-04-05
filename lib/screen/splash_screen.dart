@@ -1,7 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:netflix__clone/main.dart';
+
+import 'package:netflix__clone/screen/bottam_navigation.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
