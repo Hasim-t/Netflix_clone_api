@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:netflix__clone/utils/text.dart';
 
-class UpcomingMovies extends StatelessWidget {
-  final List upcoming;
-  const UpcomingMovies({super.key, required this.upcoming});
+class TopRatedTvShows extends StatelessWidget {
+  final List topratedTvShows;
+  const TopRatedTvShows({super.key, required this.topratedTvShows});
 
   @override
   Widget build(BuildContext context) {
@@ -14,19 +14,19 @@ class UpcomingMovies extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const CoustomText(
-              text: 'Upcoming Movies',
+            CoustomText(
+              text: 'Top rated Tv Shows',
               color: Colors.white,
               size: 22,
             ),
-            const SizedBox(
+            SizedBox(
               height: 10,
             ),
             Container(
               height: 200,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: upcoming.length,
+                  itemCount: topratedTvShows.length,
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () {},
@@ -42,8 +42,8 @@ class UpcomingMovies extends StatelessWidget {
                                   image: DecorationImage(
                                       image: NetworkImage(
                                           'https://image.tmdb.org/t/p/w500' +
-                                              upcoming[index]['poster_path']))),
-                            ),
+                                              topratedTvShows[index]['poster_path']))),
+                            )
                           ],
                         ),
                       ),
@@ -54,6 +54,5 @@ class UpcomingMovies extends StatelessWidget {
         ),
       ),
     );
-    
   }
 }

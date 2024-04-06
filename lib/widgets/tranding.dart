@@ -24,7 +24,7 @@ class TrandingMovies extends StatelessWidget {
               height: 10,
             ),
             Container(
-              height: 270,
+              height: 200,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: tranding.length,
@@ -35,11 +35,13 @@ class TrandingMovies extends StatelessWidget {
                       },
                       child: Container(
                         width: 140,
+                        height: 200,
                         child: Column(
                           children: [
                           Container(
                              height: 200,
                              decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(14),
                               image: DecorationImage(image: NetworkImage( 'https://image.tmdb.org/t/p/w500'+tranding[index]['poster_path']))
                              ),
                           )],
