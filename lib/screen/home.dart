@@ -1,6 +1,8 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:netflix__clone/notifier.dart';
 import 'package:netflix__clone/widgets/circlecontainer.dart';
 import 'package:netflix__clone/widgets/populartv.dart';
 import 'package:netflix__clone/widgets/topratedmovie.dart';
@@ -8,7 +10,6 @@ import 'package:netflix__clone/widgets/topratedtvshos.dart';
 import 'package:netflix__clone/widgets/tranding.dart';
 import 'package:netflix__clone/widgets/upcoming.dart';
 
-import 'package:tmdb_api/tmdb_api.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -21,18 +22,9 @@ class _HomeState extends State<Home> {
   String apikey = '11125e936d1fe414914f02548edee9a8';
   String keyaccecetoken =
       'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMTEyNWU5MzZkMWZlNDE0OTE0ZjAyNTQ4ZWRlZTlhOCIsInN1YiI6IjY2MGNlNjE2OWM5N2JkMDEzMGEyY2Y5MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-HMfn73kztbVL6l5BzlYeCxBDl_OdHuIE669HDdNtcM';
-  List tradingmovies = [];
-  List topratedmovies = [];
-  List tvshows = [];
-  List upcomingMovies = [];
-  List topratedtv = [];
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    loadMove();
-    super.initState();
-  }
+  
+ 
+  
 
   @override
   Widget build(BuildContext context) {
@@ -83,14 +75,14 @@ class _HomeState extends State<Home> {
                 width: 300,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(12))),
-                child: tradingmovies.isNotEmpty
+                child: trendingmovies.value.isNotEmpty
                     ? Stack(
                         fit: StackFit.expand,
                         children: [
                           ClipRRect(
                             borderRadius: BorderRadius.circular(12),
                             child: Image.network(
-                              'https://image.tmdb.org/t/p/w500${tradingmovies[0]['poster_path']}',
+                              'https://image.tmdb.org/t/p/w500${trendingmovies.value[0]['poster_path']}',
                               fit: BoxFit.cover,
                               loadingBuilder:
                                   (context, child, loadingProgress) {
@@ -156,34 +148,13 @@ class _HomeState extends State<Home> {
                         child: CircularProgressIndicator(),
                       ),
               ),
-              TrandingMovies(tranding: tradingmovies),
-              TvShows(tvshows: tvshows),
-              UpcomingMovies(upcoming: upcomingMovies),
-              TopRatedMovies(topratedmoives: topratedmovies),
-              TopRatedTvShows(topratedTvShows: topratedtv)
+              TrandingMovies(tranding:trendingmovies.value ),
+              TvShows(tvshows:  populartvshowsvalue.value),
+              UpcomingMovies(upcoming: upcomingmoviesvalue.value),
+              TopRatedMovies(topratedmoives: topratedmoviesvalue.value),
+              TopRatedTvShows(topratedTvShows: topratedtvshowsvalue.value),
             ],
           ),
         ));
-  }
-
-  loadMove() async {
-    TMDB tmdbWithCustomLogs = TMDB(ApiKeys(apikey, keyaccecetoken),
-        logConfig: ConfigLogger(
-          showLogs: true,
-          showErrorLogs: true,
-        ));
-    Map tradingrusult = await tmdbWithCustomLogs.v3.trending.getTrending();
-    Map topratedresults = await tmdbWithCustomLogs.v3.movies.getTopRated();
-    Map tvresults = await tmdbWithCustomLogs.v3.tv.getPopular();
-    Map upcomingresult = await tmdbWithCustomLogs.v3.movies.getUpcoming();
-    Map topratedTvshows = await tmdbWithCustomLogs.v3.tv.getTopRated();
-    setState(() {
-      tradingmovies = tradingrusult['results'];
-      topratedmovies = topratedresults['results'];
-      tvshows = tvresults['results'];
-      upcomingMovies = upcomingresult['results'];
-      topratedtv = topratedTvshows['results'];
-    });
-    print(upcomingMovies);
   }
 }

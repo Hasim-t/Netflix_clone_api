@@ -15,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int selectIndex = 0;
-  List<Widget> wedgetts = [Home(),News_Hot(),MyNetflix()];
+  List<Widget> wedgetts = [Home(),NewsHot(),MyNetflix()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

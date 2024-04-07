@@ -1,15 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:netflix__clone/notifier.dart';
 
-class News_Hot extends StatefulWidget {
-  const News_Hot({super.key});
+import 'package:netflix__clone/widgets/news.dart';
+
+class NewsHot extends StatefulWidget {
+  const NewsHot({super.key});
 
   @override
-  State<News_Hot> createState() => _News_HotState();
+  State<NewsHot> createState() => _NewsHotState();
 }
 
-class _News_HotState extends State<News_Hot> {
+class _NewsHotState extends State<NewsHot> {
   @override
   Widget build(BuildContext context) {
-    return   Scaffold();
+    return   Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        title: const Text('News&Hot',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
+        backgroundColor: Colors.black,
+        actions: [Icon(Icons.cast, ), SizedBox(width: 10,), IconButton(onPressed: (){}, icon: Icon(Icons.search))],),
+      body:  DisplayHotAndNews(news: trendingmovies.value),
+    );
   }
 }

@@ -1,20 +1,18 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
-
-
 import 'package:flutter/material.dart';
 import 'package:netflix__clone/services/api.dart';
 
 import 'package:netflix__clone/utils/text.dart';
 import 'package:netflix__clone/widgets/description.dart';
 
-class TopRatedTvShows extends StatelessWidget {
-  final List topratedTvShows;
-  const TopRatedTvShows({super.key, required this.topratedTvShows});
+class WatchHistory extends StatelessWidget {
+  final List tranding;
+  const WatchHistory({super.key, required this.tranding});
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: topratedtvshoesss(),
+      future: ass(),
       builder: (context, snapshot) {
         return Container(
           child: Padding(
@@ -23,7 +21,7 @@ class TopRatedTvShows extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CoustomText(
-                  text: 'Top rated Tv Shows',
+                  text: "TV Shows & Movies you've liked",
                   color: Colors.white,
                   size: 22,
                 ),
@@ -31,23 +29,20 @@ class TopRatedTvShows extends StatelessWidget {
                   height: 10,
                 ),
                 Container(
-                  height: 216,
+                  height: 200,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: topratedTvShows.length,
+                    itemCount: tranding.length,
                     itemBuilder: (context, index) {
-                      final title = topratedTvShows[index]['name'] as String?;
+                      final title = tranding[index]['title'] as String?;
                       final posterPath =
-                          topratedTvShows[index]['poster_path'] as String?;
-                      final overview =
-                          topratedTvShows[index]['overview'] as String?;
-
+                          tranding[index]['poster_path'] as String?;
+                      final overview = tranding[index]['overview'] as String?;
                       if (title == null ||
                           posterPath == null ||
                           overview == null) {
                         return SizedBox.shrink();
                       }
-
                       return InkWell(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
@@ -61,28 +56,24 @@ class TopRatedTvShows extends StatelessWidget {
                             },
                           ));
                         },
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            width: 140,
-                            height: 200,
-                            child: Column(
-                              children: [
-                                Container(
-                                  height: 200,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(14),
-                                    image: DecorationImage(
-                                      image: NetworkImage(
-                                        'https://image.tmdb.org/t/p/w500' +
-                                            posterPath,
-                                      ),
-                                      fit: BoxFit.cover,
+                        child: Container(
+                          width: 140,
+                          height: 200,
+                          child: Column(
+                            children: [
+                              Container(
+                                height: 200,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(14),
+                                  image: DecorationImage(
+                                    image: NetworkImage(
+                                      'https://image.tmdb.org/t/p/w500' +
+                                          posterPath,
                                     ),
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
                       );
