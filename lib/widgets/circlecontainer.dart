@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
+
 
 class Titless extends StatelessWidget {
   final String text;
@@ -25,7 +24,7 @@ class Titless extends StatelessWidget {
         color: Colors.white,
         width: 2
        ),
-          borderRadius: BorderRadius.all(
+          borderRadius: const BorderRadius.all(
           
             Radius.circular(
               30))),

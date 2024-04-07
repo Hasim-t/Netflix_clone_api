@@ -1,15 +1,14 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:netflix__clone/notifier.dart';
+import 'package:netflix__clone/screen/search.dart';
 import 'package:netflix__clone/widgets/circlecontainer.dart';
 import 'package:netflix__clone/widgets/populartv.dart';
 import 'package:netflix__clone/widgets/topratedmovie.dart';
 import 'package:netflix__clone/widgets/topratedtvshos.dart';
 import 'package:netflix__clone/widgets/tranding.dart';
 import 'package:netflix__clone/widgets/upcoming.dart';
-
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -22,9 +21,6 @@ class _HomeState extends State<Home> {
   String apikey = '11125e936d1fe414914f02548edee9a8';
   String keyaccecetoken =
       'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMTEyNWU5MzZkMWZlNDE0OTE0ZjAyNTQ4ZWRlZTlhOCIsInN1YiI6IjY2MGNlNjE2OWM5N2JkMDEzMGEyY2Y5MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.-HMfn73kztbVL6l5BzlYeCxBDl_OdHuIE669HDdNtcM';
-  
- 
-  
 
   @override
   Widget build(BuildContext context) {
@@ -37,13 +33,20 @@ class _HomeState extends State<Home> {
             width: 30,
           ),
           backgroundColor: Colors.black,
-          actions: const [
-            Icon(Icons.cast_connected_outlined),
-            SizedBox(
+          actions: [
+            const Icon(Icons.cast_connected_outlined),
+            const SizedBox(
               width: 20,
             ),
-            Icon(Icons.search),
-            SizedBox(
+            IconButton(
+                onPressed: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) {
+                    return Search();
+                  }));
+                },
+                icon: const Icon(Icons.search)),
+            const SizedBox(
               width: 10,
             )
           ],
@@ -148,8 +151,8 @@ class _HomeState extends State<Home> {
                         child: CircularProgressIndicator(),
                       ),
               ),
-              TrandingMovies(tranding:trendingmovies.value ),
-              TvShows(tvshows:  populartvshowsvalue.value),
+              TrandingMovies(tranding: trendingmovies.value),
+              TvShows(tvshows: populartvshowsvalue.value),
               UpcomingMovies(upcoming: upcomingmoviesvalue.value),
               TopRatedMovies(topratedmoives: topratedmoviesvalue.value),
               TopRatedTvShows(topratedTvShows: topratedtvshowsvalue.value),

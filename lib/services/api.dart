@@ -83,6 +83,19 @@ Future<void> popularmoviesfutere() async {
     print(e);
   }
 }
- ass() async{
 
+Future<void> searchfututer(String quary) async {
+  isloading.value = true;
+  final url =
+      'https://api.themoviedb.org/3/search/movie?query=$quary&api_key=$apikey';
+  final uri = Uri.parse(url);
+  final responce = await http.get(uri);
+  if (responce.statusCode == 200) {
+    final body = responce.body;
+    final item = jsonDecode(body);
+    searchmovies.value = item['results'];
+    searchmovies.notifyListeners();
+    isloading.value = false;
+    isloading.notifyListeners();
+  }
 }

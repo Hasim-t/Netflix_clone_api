@@ -11,7 +11,7 @@ class Trialers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: ass(),
+      future: trendingmoviess(),
       builder: (context, snapshot) {
         return Container(
           child: Padding(

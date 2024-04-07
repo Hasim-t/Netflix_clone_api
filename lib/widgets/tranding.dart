@@ -12,7 +12,7 @@ class TrandingMovies extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: ass(),
+      future: trendingmoviess(),
       builder: (context, snapshot) {
         return Container(
           child: Padding(
@@ -68,7 +68,7 @@ class TrandingMovies extends StatelessWidget {
                                   image: DecorationImage(
                                     image: NetworkImage(
                                       'https://image.tmdb.org/t/p/w500' +
-                                          posterPath!,
+                                          posterPath,
                                     ),
                                   ),
                                 ),

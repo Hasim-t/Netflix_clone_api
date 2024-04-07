@@ -1,14 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
 
 class Descriptions extends StatefulWidget {
   final String titles, posterurl, description;
-  Descriptions({super.key,  required this.posterurl, required this.description, required this.titles,});
+  const Descriptions({super.key,  required this.posterurl, required this.description, required this.titles,});
   
   @override
   State<Descriptions> createState() => _DescriptionState();

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:netflix__clone/notifier.dart';
-import 'package:netflix__clone/services/api.dart';
+
 import 'package:netflix__clone/widgets/populartv.dart';
-import 'package:netflix__clone/widgets/topratedmovie.dart';
+
 import 'package:netflix__clone/widgets/trailears.dart';
 import 'package:netflix__clone/widgets/watchhistory.dart';
 
