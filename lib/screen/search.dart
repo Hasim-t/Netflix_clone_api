@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:netflix__clone/notifier.dart';
 
 import 'package:netflix__clone/services/api.dart';
+import 'package:netflix__clone/services/deboouncer.dart';
 
 class Search extends StatefulWidget {
   const Search({Key? key}) : super(key: key);
@@ -11,6 +12,7 @@ class Search extends StatefulWidget {
 }
 
 class _SearchState extends State<Search> {
+  final Deboucer _deboucer = Deboucer(millisecond: 500);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,31 +20,33 @@ class _SearchState extends State<Search> {
         backgroundColor: Colors.black,
         title: const Text('Search Movies'),
       ),
-      body:Padding(
+      body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child:Column(
-          children:[
+        child: Column(
+          children: [
             TextField(
-              onChanged:(value) {
-              searchfututer(value);
+              onChanged: (value) {
+                _deboucer.run(() {
+                  searchfututer(value);
+                });
               },
-              style:const TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 16.0,
               ),
-              decoration:InputDecoration(
-                filled:true,
+              decoration: InputDecoration(
+                filled: true,
                 fillColor: Colors.grey[900],
-                hintText:"Search Movies & TV shows",
-                hintStyle:const TextStyle(
-                  color:Colors.grey,
+                hintText: "Search Movies & TV shows",
+                hintStyle: const TextStyle(
+                  color: Colors.grey,
                   fontSize: 16.0,
                 ),
-                border:OutlineInputBorder(
+                border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8.0),
                   borderSide: BorderSide.none,
                 ),
-                contentPadding:const EdgeInsets.symmetric(
+                contentPadding: const EdgeInsets.symmetric(
                   vertical: 12.0,
                   horizontal: 16.0,
                 ),
@@ -64,11 +68,9 @@ class _SearchState extends State<Search> {
                       final posterPath = movie['poster_path'];
                       final title = movie['title'];
                       return GestureDetector(
-                        onTap: () {
-                         
-                        },
+                        onTap: () {},
                         child: Container(
-                          height: 200, 
+                          height: 200,
                           margin: const EdgeInsets.only(bottom: 16.0),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.0),
@@ -82,10 +84,10 @@ class _SearchState extends State<Search> {
                           child: Stack(
                             children: [
                               Positioned(
-                                bottom:0,
-                                left:0,
-                                right:0,
-                                child:Container(
+                                bottom: 0,
+                                left: 0,
+                                right: 0,
+                                child: Container(
                                   padding: const EdgeInsets.all(8.0),
                                   decoration: BoxDecoration(
                                     color: Colors.black.withOpacity(0.5),

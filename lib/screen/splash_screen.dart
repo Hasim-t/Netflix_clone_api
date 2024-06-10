@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 import 'package:netflix__clone/screen/bottam_navigation.dart';
 import 'package:netflix__clone/services/api.dart';
@@ -35,7 +36,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: Image.asset(
-            'asset/HD-wallpaper-netflix-logo-black-logo-minimal-netflix.jpg'));
+        child:Lottie.asset('asset/netflix animation.json',fit: BoxFit.fill));
   }
 }

@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
+
 import "dart:convert";
 
 import "package:http/http.dart" as http;
@@ -94,8 +96,10 @@ Future<void> searchfututer(String quary) async {
     final body = responce.body;
     final item = jsonDecode(body);
     searchmovies.value = item['results'];
+   
     searchmovies.notifyListeners();
     isloading.value = false;
     isloading.notifyListeners();
   }
 }
+
